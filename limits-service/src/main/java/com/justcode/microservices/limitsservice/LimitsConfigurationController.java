@@ -10,11 +10,14 @@ import com.justcode.microservices.limitsservice.bean.LimitConfiguration;
 @RestController
 public class LimitsConfigurationController {
 
+	@Autowired
+	private Configuration configuration;
 
 
 	@GetMapping("/limits")
 	public LimitConfiguration retrieveLimitsFromConfigurations() {
-		LimitConfiguration limitConfiguration = new LimitConfiguration(10,1000);
+		LimitConfiguration limitConfiguration = new LimitConfiguration(configuration.getMaximum(), 
+				configuration.getMinimum());
 		return limitConfiguration;
 	}
 	
