@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CurrencyExchangeController {
 	
-
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private Environment environment;
 	
@@ -27,7 +27,10 @@ public class CurrencyExchangeController {
 		ExchangeValue exchangeValue =repository.findByFromAndTo(from, to);
 		
 		exchangeValue.setPort(
-				Integer.parseInt(environment.getProperty("local.server.port")));		
+				Integer.parseInt(environment.getProperty("local.server.port")));
+		logger.info("seege007exchange");
+		logger.info("{}"+exchangeValue);
+		
 		return exchangeValue;
 	}
 }
